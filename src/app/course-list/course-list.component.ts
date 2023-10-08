@@ -44,13 +44,21 @@ export class CourseListComponent {
 
   onSort(column: SortColumn) {
 
+    let originalColumn = this.sortInfo.column;//save previous sort column before assigning new value
+
     //we update sort state
     this.sortInfo.column = column;
 
-    if(this.sortInfo.order == null)
+    if(this.sortInfo.order == null){
       this.sortInfo.order = 1;//if list is not sorted yet, we sort it in ascending order by default
+    }
     else
-      this.sortInfo.order = this.sortInfo.order == 1 ? -1 : 1;//reversing order
+    {
+      if(originalColumn == column)//if same column is clicked multiple times we need to reverse order
+        this.sortInfo.order = this.sortInfo.order == 1 ? -1 : 1;//reversing order
+      else
+        this.sortInfo.order = 1;//if new column is clicked default sort order is ascdending
+    }
 
     //we use inplace sorting (the array is updated inplace)
     //angular will detect change to this variable and view (html) will be updated automatically
