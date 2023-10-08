@@ -1,0 +1,26 @@
+
+<h1>Courses</h1>
+
+<!--we use table tag to display courses as a table. Using divs with display: table is also good option-->
+
+<table>
+    <thead>
+        <th>Id</th>
+        <th (click)="onSort('name')">Name {{ getColumnSortInfoText('name') }}</th>
+        <th (click)="onSort('code')">Code {{ getColumnSortInfoText('code') }}</th>
+        <th (click)="onSort('credit')">Credits {{ getColumnSortInfoText('credit') }}</th>
+        <th>Type</th>
+        <th>Status</th>
+    </thead>
+    <!--
+        we use ngFor directive for displaying list of items (courses)
+    -->
+    <tr *ngFor="let course of courses">
+        <td>{{ course.id }}</td>
+        <td>{{ course.name }} {{ course.type == "core" ? '*' : ''}}</td><!-- we can also write expressions (in this case we use ternary operator)-->
+        <td>{{ course.code }}</td>
+        <td>{{ course.credits }}</td>
+        <td>{{ course.type }}</td>
+        <td>{{ getStatusName(course) }}</td><!-- we can use all variable defined in component and also call function we define in component class (typescript file)-->
+    </tr>
+</table>
