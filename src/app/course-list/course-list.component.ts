@@ -1,12 +1,13 @@
 import { Component } from '@angular/core';
 import { Course, CourseStatus, SortColumn } from '../course';//we import our course interface that we defined in other file to be able ti use it
 
-
 //we will display course list using this component we added to project
 @Component({
   selector: 'app-course-list',
+  standalone: true,
+  imports: [],
   templateUrl: './course-list.component.html',
-  styleUrls: ['./course-list.component.css']
+  styleUrl: './course-list.component.css'
 })
 export class CourseListComponent {
   //we will use variable pf array type (array of courses) to store our course list.
